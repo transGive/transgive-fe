@@ -5,7 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material";
 import { transGivTheme } from "@/themes/theme";
 import '@rainbow-me/rainbowkit/styles.css';
-import Header from "@/components/layout/Header";
+import Header from "@/components/layouts/Header";
 import {
   getDefaultConfig,
   RainbowKitProvider,
