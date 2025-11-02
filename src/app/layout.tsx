@@ -24,6 +24,7 @@ import {
 
 import { http } from 'viem'
 import { ReduxProvider } from "@/store/provider";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,7 +57,7 @@ const queryClient = new QueryClient({
 })
 
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body
