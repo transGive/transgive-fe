@@ -57,11 +57,11 @@ export default function Header() {
     handleLogin();
   }, [account.address, account.isConnected, dispatch]);
 
-  const formatAddress = (address) => {
+  const formatAddress = (address: any) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
-  const formatBalance = (balance) => {
+  const formatBalance = (balance: any) => {
     return parseFloat(balance).toFixed(4);
   };
 
