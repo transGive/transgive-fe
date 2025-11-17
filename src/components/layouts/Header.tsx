@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { loginWallet } from '@/api/auth';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setUser, setUserAddress } from '@/store/slices/userSlice';
+import Link from 'next/link';
 
 
 export default function Header() {
@@ -21,7 +22,7 @@ export default function Header() {
   const user = useAppSelector((state) => state.user);
   console.log('account: ', account);
   console.log('user: ', user);
-  
+
 
   // Handle wallet login when account connects
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Header() {
         setIsLoggingIn(true);
         try {
           console.log('ngu');
-          
+
           const response = await loginWallet({ userAddress: account.address });
 
           // Save token to localStorage
@@ -38,11 +39,19 @@ export default function Header() {
 
           // Update Redux store with user data
           dispatch(setUser({
+            _id: response.user._id,
             userAddress: response.user.userAddress,
             userName: response.user.userName || '',
             email: response.user.email || '',
             avatar: response.user.avatar || '',
-            accessToken: response.accessToken
+            accessToken: response.accessToken,
+            status: response.user.status,
+            role: response.user.role,
+            supportingImages: response.user.supportingImages,
+            activityField: response.user.activityField,
+            operationalScope: response.user.operationalScope,
+            locationAddress: response.user.locationAddress,
+            description: response.user.description,
           }));
 
           console.log('Login successful:', response);
@@ -68,16 +77,18 @@ export default function Header() {
   return (
     <AppBar sx={{ bgcolor: 'teal600' }} position="static">
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Typography
-          variant="h5"
-          component="h1"
-          sx={{
-            fontWeight: 'bold',
-            color: 'white'
-          }}
-        >
-          transGiv
-        </Typography>
+        <Link href='/'>
+          <Typography
+            variant="h5"
+            component="h1"
+            sx={{
+              fontWeight: 'bold',
+              color: 'white'
+            }}
+          >
+            transGiv
+          </Typography>
+        </Link>
 
         {/* <Button
             variant="contained"

@@ -20,6 +20,8 @@ export const transGivTheme = createTheme({
       main: '#02A9B6', // your teal500
     },
     ...({
+      gray1: '#fcfcfc',
+      gray2: '#f5f5f5',
       teal50: '#f0fdfa',
       teal100: '#ccfbf1',
       teal200: '#99f6e4',
