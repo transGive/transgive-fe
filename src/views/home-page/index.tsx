@@ -114,9 +114,9 @@ export default function HomePage() {
                 },
                 transition: 'all 0.3s ease'
               }}
-              onClick={() => router.push('/create-campaign')}
+              onClick={() => router.push('/fundraiser/apply')}
             >
-              Tạo quỹ mới
+              Gây quỹ
             </Button>
           </Box>
         </Container>
@@ -170,7 +170,7 @@ export default function HomePage() {
               color: '#2dd4bf'
             }
           ].map((feature, index) => (
-            <Box sx={{width: '32%'}} key={index}>
+            <Box sx={{ width: '32%' }} key={index}>
               <Card
                 sx={{
                   height: '100%',
@@ -224,7 +224,7 @@ export default function HomePage() {
       </Container>
 
       {/* How It Works Section */}
-      <Box sx={{ bgcolor: '#f0fdfa', py: 8, display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ bgcolor: 'gray2', py: 8, display: 'flex', justifyContent: 'center' }}>
         <Container maxWidth="lg">
           <Typography
             variant="h3"
