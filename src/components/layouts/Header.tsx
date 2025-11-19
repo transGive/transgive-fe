@@ -35,7 +35,7 @@ export default function Header() {
           const response = await loginWallet({ userAddress: account.address });
 
           // Save token to localStorage
-          localStorage.setItem('authToken', response.accessToken);
+          localStorage.setItem('accessToken', response.accessToken);
 
           // Update Redux store with user data
           dispatch(setUser({

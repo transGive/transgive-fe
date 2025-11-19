@@ -21,7 +21,8 @@ export const transGivTheme = createTheme({
     },
     ...({
       gray1: '#fcfcfc',
-      gray2: '#f5f5f5',
+      gray2: '#f7f7f7',
+      // gray3: ""
       teal50: '#f0fdfa',
       teal100: '#ccfbf1',
       teal200: '#99f6e4',

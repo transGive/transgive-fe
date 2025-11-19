@@ -37,6 +37,6 @@ export interface RefreshTokenResponse {
 }
 
 export const refreshToken = async (): Promise<RefreshTokenResponse> => {
-  const response = await apiClient.get<RefreshTokenResponse>('/auth/refresh');
+  const response = await axios.get<RefreshTokenResponse>(process.env.NEXT_PUBLIC_API_BASE_URL + '/auth/refresh');
   return response.data;
 };

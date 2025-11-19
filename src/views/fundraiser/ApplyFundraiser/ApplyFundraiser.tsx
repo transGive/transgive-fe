@@ -98,9 +98,9 @@ function ApplyFundraiser() {
       newErrors.operationalScope = 'Vui lòng nhập phạm vi hoạt động';
     }
 
-    if (!formData.locationAddress.trim()) {
-      newErrors.locationAddress = 'Vui lòng nhập địa chỉ';
-    }
+    // if (!formData.locationAddress.trim()) {
+    //   newErrors.locationAddress = 'Vui lòng nhập địa chỉ';
+    // }
 
     if (!formData.description.trim()) {
       newErrors.description = 'Vui lòng nhập mô tả';

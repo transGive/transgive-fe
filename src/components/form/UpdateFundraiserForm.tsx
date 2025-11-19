@@ -168,13 +168,13 @@ function UpdateFundraiserForm({
               {/* locationAddress */}
               <TextField
                 fullWidth
-                label="Địa chỉ"
+                label="Địa chỉ nếu có"
                 value={formData.locationAddress}
                 onChange={(e) => handleInputChange('locationAddress', e.target.value)}
                 error={!!errors.locationAddress}
                 helperText={errors.locationAddress}
                 sx={{ mb: 3 }}
-                required
+                // required
                 multiline
                 rows={2}
                 placeholder="Nhập địa chỉ đầy đủ"
