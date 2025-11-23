@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
@@ -141,3 +141,32 @@ apiClient.interceptors.response.use(
     }
   }
 );
+
+export const request = {
+  get<ReqType = any, ResType = any>(
+    url: string,
+    params?: ReqType,
+    config?: AxiosRequestConfig
+  ): Promise<ResType> {
+    return apiClient.get(url, {
+      params,
+      ...config,
+    });
+  },
+  post<ReqType, ResType>(
+    url: string,
+    data?: ReqType,
+    config?: AxiosRequestConfig<ReqType>
+  ): Promise<ResType> {
+    return apiClient.post(url, data, config);
+  },
+  put<ReqType, ResType>(url: string, data?: ReqType): Promise<ResType> {
+    return apiClient.put(url, data);
+  },
+  patch<ReqType, ResType>(url: string, data?: ReqType): Promise<ResType> {
+    return apiClient.patch(url, data);
+  },
+  delete<ReqType, ResType>(url: string, data?: ReqType): Promise<ResType> {
+    return apiClient.delete(url, { data });
+  },
+};

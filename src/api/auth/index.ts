@@ -1,42 +1,15 @@
-import { apiClient } from '../client';
-import axios from 'axios';
-export interface LoginWalletRequest {
-  userAddress: string;
-}
+import { request } from "@/services/client";
+import { LoginWalletRequest, LoginWalletResponse } from "@/interfaces";
 
-export interface LoginWalletResponse {
-  accessToken: string;
-  user: {
-    _id: string;
-    userAddress: string;
-    email?: string;
-    userName?: string;
-    avatar?: string;
-    status?: 'active' | 'inactive' | 'banned' | 'pending';
-    role?: 'admin' | 'fundraiser' | 'user';
-    supportingImages?: { url: string; publicId: string }[];
-    activityField?: string;
-    operationalScope?: string;
-    locationAddress?: string;
-    description?: string;
-  };
-}
-
-export const loginWallet = async (
-  data: LoginWalletRequest
-): Promise<LoginWalletResponse> => {
-  const response = await axios.post<LoginWalletResponse>(
-    process.env.NEXT_PUBLIC_API_BASE_URL + '/auth/login-wallet',
-    data
-  );
-  return response.data;
-};
+export const loginWallet = (data: LoginWalletRequest) =>
+    request.post<LoginWalletRequest, LoginWalletResponse>(
+        "/auth/login-wallet",
+        data
+    );
 
 export interface RefreshTokenResponse {
-  accessToken: string;
+    accessToken: string;
 }
 
-export const refreshToken = async (): Promise<RefreshTokenResponse> => {
-  const response = await apiClient.get<RefreshTokenResponse>('/auth/refresh');
-  return response.data;
-};
+export const refreshToken = () =>
+    request.get<any, RefreshTokenResponse>("/auth/refresh");
