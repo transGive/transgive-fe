@@ -9,7 +9,6 @@ import Header from "@/components/layouts/Header";
 import {
   getDefaultConfig,
   RainbowKitProvider,
-  darkTheme,
   lightTheme
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';

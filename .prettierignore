@@ -1,0 +1,16 @@
+.next
+node_modules
+dist
+build
+out
+*.lock
+package-lock.json
+yarn.lock
+.git
+.gitignore
+public
+*.config.js
+*.config.mjs
+*.config.ts
+next-env.d.ts
+

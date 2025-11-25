@@ -3,15 +3,12 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
 import { loginWallet } from '@/api/auth';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setUser, setUserAddress } from '@/store/slices/userSlice';
+import { setUser } from '@/store/slices/userSlice';
 import Link from 'next/link';
 
 
@@ -64,15 +61,7 @@ export default function Header() {
     };
 
     handleLogin();
-  }, [account.address, account.isConnected, dispatch]);
-
-  const formatAddress = (address: any) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  };
-
-  const formatBalance = (balance: any) => {
-    return parseFloat(balance).toFixed(4);
-  };
+  }, [account.address, account.isConnected, dispatch, isLoggingIn]);
 
   return (
     <AppBar sx={{ bgcolor: 'teal600' }} position="static">

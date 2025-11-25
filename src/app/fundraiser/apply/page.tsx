@@ -1,10 +1,11 @@
-import ApplyFundraiser from '@/views/fundraiser/ApplyFundraiser/ApplyFundraiser'
-import React from 'react'
+import ApplyFundraiser from "@/views/fundraiser/apply-fundraiser";
 
 function index() {
-  return (
-    <div><ApplyFundraiser /></div>
-  )
+    return (
+        <div>
+            <ApplyFundraiser />
+        </div>
+    );
 }
 
-export default index
+export default index;

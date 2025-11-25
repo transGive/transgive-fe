@@ -1,5 +1,5 @@
 import { request } from "@/services/client";
-import { LoginWalletRequest, LoginWalletResponse } from "@/interfaces";
+import { type LoginWalletRequest, type LoginWalletResponse } from "@/interfaces";
 
 export const loginWallet = (data: LoginWalletRequest) =>
     request.post<LoginWalletRequest, LoginWalletResponse>(

@@ -19,22 +19,6 @@ const float = keyframes`
   50% { transform: translateY(-20px); }
 `;
 
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-`;
-
 export default function HomePage() {
     const router = useRouter();
     const { trustIndicators, features, howItWorksSteps, stats } = useHome();

@@ -21,7 +21,6 @@ import {
 } from '@mui/material';
 import { CloudUpload, Delete, Description, HelpOutline } from '@mui/icons-material';
 import MarkdownSyntaxModal from '@/components/Modal/MarkdownSyntaxModal';
-import { uploadImages } from '@/api/upload';
 
 interface FormData {
   applicantType: 'individual' | 'organization';

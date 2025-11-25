@@ -1,5 +1,5 @@
 import { request } from '@/services/client';
-import { UpdateUserDto, UpdateUserResponse } from '@/interfaces';
+import { type UpdateUserDto, type UpdateUserResponse } from '@/interfaces';
 
 
 export const updateUser = (data: UpdateUserDto) =>

@@ -1,4 +1,4 @@
-import { UploadImagesResponse } from '@/interfaces';
+import { type UploadImagesResponse } from '@/interfaces';
 import { request } from '@/services/client';
 
 export const uploadImages = (files: File[]) => {

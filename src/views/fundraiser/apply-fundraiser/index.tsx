@@ -1,26 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
-  Container,
   Typography,
-  TextField,
-  Button,
-  Card,
-  CardContent,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Alert,
-  Paper,
-  IconButton,
-  Grid
 } from '@mui/material';
-import { CloudUpload, Delete, Description, HelpOutline } from '@mui/icons-material';
-import MarkdownSyntaxModal from '@/components/Modal/MarkdownSyntaxModal';
 import { uploadImages } from '@/api/upload';
 import UpdateFundraiserForm from '@/components/form/UpdateFundraiserForm';
 import { updateUser } from '@/api/user';
@@ -54,7 +38,6 @@ function ApplyFundraiser() {
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
   const clearError = (field: keyof FormData) => {
