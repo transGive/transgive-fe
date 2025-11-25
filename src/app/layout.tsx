@@ -4,19 +4,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@mui/material";
 import { transGivTheme } from "@/themes/theme";
-import "@rainbow-me/rainbowkit/styles.css";
 import Header from "@/components/layouts/Header";
-import {
-    getDefaultConfig,
-    RainbowKitProvider,
-    lightTheme,
-} from "@rainbow-me/rainbowkit";
-import { WagmiProvider } from "wagmi";
-import { mainnet, sepolia } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-
-import { http } from "viem";
 import { ReduxProvider } from "@/store/provider";
+import { WalletContextProvider } from "@/contexts/WalletContextProvider";
 import React from "react";
 
 const geistSans = Geist({
@@ -29,27 +20,10 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-const config = getDefaultConfig({
-    appName: "transGiv",
-    projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "",
-    chains: [mainnet, sepolia],
-    transports: {
-        // [bscTestnet.id]: http('https://bsc-testnet-rpc.publicnode.com'),
-        [mainnet.id]: http(
-            "https://eth-mainnet.g.alchemy.com/v2/" +
-                process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-        ),
-        [sepolia.id]: http(
-            "https://eth-sepolia.g.alchemy.com/v2/" +
-                process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-        ),
-    },
-});
-
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            gcTime: 1_000 * 60 * 60 * 24, // 24 hours
+            gcTime: 1_000 * 60 * 60 * 24,
             refetchOnWindowFocus: false,
         },
     },
@@ -66,26 +40,14 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <ReduxProvider>
-                    <WagmiProvider config={config}>
-                        <QueryClientProvider client={queryClient}>
-                            <RainbowKitProvider
-                                initialChain={sepolia}
-                                coolMode
-                                theme={lightTheme({
-                                    accentColor: "#2dd4bf",
-                                    accentColorForeground: "white",
-                                    borderRadius: "small",
-                                    fontStack: "system",
-                                    overlayBlur: "small",
-                                })}
-                            >
-                                <ThemeProvider theme={transGivTheme}>
-                                    <Header />
-                                    {children}
-                                </ThemeProvider>
-                            </RainbowKitProvider>
-                        </QueryClientProvider>
-                    </WagmiProvider>
+                    <QueryClientProvider client={queryClient}>
+                        <WalletContextProvider>
+                            <ThemeProvider theme={transGivTheme}>
+                                <Header />
+                                {children}
+                            </ThemeProvider>
+                        </WalletContextProvider>
+                    </QueryClientProvider>
                 </ReduxProvider>
             </body>
         </html>

@@ -3,4 +3,4 @@
   Trải nghiệm dễ dàng.
 
     TransGive hướng tới việc kết hợp sức mạnh công nghệ Web3 (on-chain transparency) với trải nghiệm Web2 tạo ra cầu nối giúp mọi người có thể tham gia đóng góp vào các hoạt động thiện nguyện hoặc dự án xã hội mà không  
-    cần quá nhiều kiến thức kỹ thuật về blockchain. màu chủ đạo là teal400: '#2dd4bf' teal600: '#0d9488' white. teal300: '#5eead4'
+     cần quá nhiều kiến thức kỹ thuật về blockchain. màu chủ đạo là teal400: '#2dd4bf' teal600: '#0d9488' white. teal300: '#5eead4'

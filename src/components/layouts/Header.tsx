@@ -3,38 +3,32 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount } from "wagmi";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useState } from "react";
 import { loginWallet } from "@/api/auth";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import { setUser } from "@/store/slices/userSlice";
 import Link from "next/link";
+import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
 
 export default function Header() {
-    const account = useAccount();
+    const { publicKey, connected } = useWallet();
     const dispatch = useAppDispatch();
     const [isLoggingIn, setIsLoggingIn] = useState(false);
-    const user = useAppSelector((state) => state.user);
-    console.log("account: ", account);
-    console.log("user: ", user);
+    // const user = useAppSelector((state) => state.user);
+    const walletAddress = publicKey?.toBase58();
 
-    // Handle wallet login when account connects
     useEffect(() => {
         const handleLogin = async () => {
-            if (account.address && account.isConnected && !isLoggingIn) {
+            if (walletAddress && connected && !isLoggingIn) {
                 setIsLoggingIn(true);
                 try {
-                    console.log("ngu");
-
                     const response = await loginWallet({
-                        userAddress: account.address,
+                        userAddress: walletAddress,
                     });
 
-                    // Save token to localStorage
                     localStorage.setItem("authToken", response.accessToken);
 
-                    // Update Redux store with user data
                     dispatch(
                         setUser({
                             _id: response.user._id,
@@ -52,8 +46,6 @@ export default function Header() {
                             description: response.user.description,
                         }),
                     );
-
-                    console.log("Login successful:", response);
                 } catch (error) {
                     console.error("Login failed:", error);
                 } finally {
@@ -63,7 +55,7 @@ export default function Header() {
         };
 
         handleLogin();
-    }, [account.address, account.isConnected, dispatch, isLoggingIn]);
+    }, [walletAddress, connected, dispatch, isLoggingIn]);
 
     return (
         <AppBar sx={{ bgcolor: "teal600" }} position="static">
@@ -81,39 +73,7 @@ export default function Header() {
                     </Typography>
                 </Link>
 
-                {/* <Button
-            variant="contained"
-            // disabled={}
-            sx={{
-              textTransform: 'none',
-              px: 3,
-              py: '0.3rem',
-              border: 'none',
-              boxShadow: 'none',
-              color: 'white',
-              fontWeight: 'bold',
-              transition: 'ease-in-out 0.2s',
-              cursor: 'pointer',
-              bgcolor: 'teal400',
-              fontSize:'18px',
-              ":hover": {
-                bgcolor: 'teal300',
-                border: 'none',
-                boxShadow: 'none',
-              },
-              ":disabled": {
-                bgcolor: 'rgba(255, 255, 255, 0.3)',
-                color: 'white',
-              }
-            }}
-          >
-            Login
-          </Button> */}
-                <ConnectButton
-                    label="Kết nối ví"
-                    chainStatus={"icon"}
-                    showBalance={true}
-                />
+                <ConnectWalletButton label="Kết nối ví" />
             </Toolbar>
         </AppBar>
     );
