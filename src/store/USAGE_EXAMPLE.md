@@ -3,8 +3,8 @@
 ## Importing Hooks and Actions
 
 ```typescript
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setUser, setUserAddress, clearUser } from '@/store/slices/userSlice';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setUser, setUserAddress, clearUser } from "@/store/slices/userSlice";
 ```
 
 ## Reading State in Components

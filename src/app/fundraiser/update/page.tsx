@@ -1,11 +1,12 @@
-import FundraiserUpdateBasic from '@/views/fundraiser/FundraiserUpdate/FundraiserUpdateBasic'
-import { Box } from '@mui/material'
-import React from 'react'
+import FundraiserUpdateBasic from "@/views/fundraiser/fundraiser-update";
+import { Box } from "@mui/material";
 
 function index() {
-  return (
-    <Box><FundraiserUpdateBasic /></Box>
-  )
+    return (
+        <Box>
+            <FundraiserUpdateBasic />
+        </Box>
+    );
 }
 
-export default index
+export default index;
