@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import HomePage from "@/views/home-page";
 
 export default function Home() {
-  return (
-    <><HomePage /></>
-  );
+    return (
+        <>
+            <HomePage />
+        </>
+    );
 }

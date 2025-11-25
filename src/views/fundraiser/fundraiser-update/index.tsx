@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function FundraiserUpdateBasic() {
-  return (
-    <div>FundraiserUpdateBasic</div>
-  )
+    return <div>FundraiserUpdateBasic</div>;
 }
 
-export default FundraiserUpdateBasic
+export default FundraiserUpdateBasic;

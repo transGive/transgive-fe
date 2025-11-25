@@ -1,10 +1,13 @@
 import { request } from "@/services/client";
-import { type LoginWalletRequest, type LoginWalletResponse } from "@/interfaces";
+import {
+    type LoginWalletRequest,
+    type LoginWalletResponse,
+} from "@/interfaces";
 
 export const loginWallet = (data: LoginWalletRequest) =>
     request.post<LoginWalletRequest, LoginWalletResponse>(
         "/auth/login-wallet",
-        data
+        data,
     );
 
 export interface RefreshTokenResponse {
