@@ -1,8 +1,36 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Solana Wallet Integration
+
+Dự án này sử dụng **@solana/wallet-adapter-react** để tích hợp ví Solana, hỗ trợ các ví phổ biến như Phantom, Solflare, Torus, và Ledger.
+
+### Cấu hình
+
+Tạo file `.env.local` trong thư mục gốc và thêm (tùy chọn):
+
+```env
+# Solana RPC URL (không bắt buộc, mặc định sẽ dùng devnet)
+NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
+
+# Để sử dụng mainnet-beta:
+# NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
+```
+
+Nếu không thiết lập `NEXT_PUBLIC_SOLANA_RPC_URL`, ứng dụng sẽ tự động sử dụng Solana devnet cluster.
+
+### Cài đặt dependencies
+
+Đầu tiên, cài đặt các dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
 ## Getting Started
 
-First, run the development server:
+Sau đó, chạy development server:
 
 ```bash
 npm run dev
