@@ -1,6 +1,5 @@
-import { request } from '@/services/client';
-import { UpdateUserDto, UpdateUserResponse } from '@/interfaces';
-
+import { request } from "@/services/client";
+import { type UpdateUserDto, type UpdateUserResponse } from "@/interfaces";
 
 export const updateUser = (data: UpdateUserDto) =>
-    request.patch<UpdateUserDto, UpdateUserResponse>('/users/update', data);
+    request.patch<UpdateUserDto, UpdateUserResponse>("/users/update", data);

@@ -6,12 +6,12 @@ export enum ResponseCode {
     NOT_FOUND = 404,
     VALIDATION_ERROR = 422,
     SERVER_ERROR = 500,
-  }
+}
 
-  export const DATE_FORMAT = {
-    SHORT_MONTH_YEAR: 'MM/yy',
-    BASIC_DATE: 'DD-MM-YYYY',
-    FULL_DATE_TIME: 'YYYY/MM/DD HH:mm',
-    ISO_DATE: 'YYYY-MM-DD',
-    FULL_DATE_WITH_TIME: 'HH:mm DD MMM YYYY',
-  } as const;
+export const DATE_FORMAT = {
+    SHORT_MONTH_YEAR: "MM/yy",
+    BASIC_DATE: "DD-MM-YYYY",
+    FULL_DATE_TIME: "YYYY/MM/DD HH:mm",
+    ISO_DATE: "YYYY-MM-DD",
+    FULL_DATE_WITH_TIME: "HH:mm DD MMM YYYY",
+} as const;
