@@ -1,408 +1,738 @@
-// "use client";
+"use client";
 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { useRouter } from 'next/navigation';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { useRouter } from "next/navigation";
+import SearchIcon from "@mui/icons-material/Search";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import SecurityIcon from "@mui/icons-material/Security";
+import Chip from "@mui/material/Chip";
+import { keyframes } from "@mui/system";
+import { useHome } from "./index.utils";
+
+const float = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+`;
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
 
 export default function HomePage() {
-  const router = useRouter();
+    const router = useRouter();
+    const { trustIndicators, features, howItWorksSteps, stats } = useHome();
 
-  return (
-    <>
-      {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%)',
-          color: 'white',
-          py: { xs: 8, md: 12 },
-          textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-            opacity: 0.4,
-          }
-        }}
-      >
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-          <Typography
-            variant="h5"
-            component="h1"
-            sx={{
-              fontWeight: 'bold',
-              mb: 2,
-              fontSize: { xs: '2.5rem', md: '3.5rem' }
-            }}
-          >
-            Từ thiện minh bạch với Web3
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              mb: 4,
-              opacity: 0.95,
-              fontWeight: 400,
-              fontSize: { xs: '1.2rem', md: '1.5rem' }
-            }}
-          >
-            Theo dõi từng đồng đóng góp của bạn trên blockchain
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              mb: 5,
-              maxWidth: '700px',
-              mx: 'auto',
-              opacity: 0.9,
-              fontSize: { xs: '1rem', md: '1.1rem' }
-            }}
-          >
-            Không cần ví điện tử, không cần kiến thức blockchain - chỉ cần email để bắt đầu hành trình từ thiện an toàn và minh bạch
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                bgcolor: 'white',
-                color: '#0d9488',
-                px: 4,
-                py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                textTransform: 'none',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-                '&:hover': {
-                  bgcolor: '#f0fdfa',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
-                },
-                transition: 'all 0.3s ease'
-              }}
-              onClick={() => router.push('/campaigns')}
+    return (
+        <>
+            <Box
+                sx={{
+                    position: "relative",
+                    background:
+                        "linear-gradient(165deg, #0d9488 0%, #2dd4bf 50%, #5eead4 100%)",
+                    color: "white",
+                    py: { xs: 10, md: 16 },
+                    overflow: "hidden",
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        top: "-50%",
+                        right: "-20%",
+                        width: "800px",
+                        height: "800px",
+                        borderRadius: "50%",
+                        background:
+                            "radial-gradient(circle, rgba(45, 212, 191, 0.2) 0%, transparent 70%)",
+                        animation: `${float} 6s ease-in-out infinite`,
+                    },
+                    "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        bottom: "-30%",
+                        left: "-10%",
+                        width: "600px",
+                        height: "600px",
+                        borderRadius: "50%",
+                        background:
+                            "radial-gradient(circle, rgba(5, 150, 105, 0.15) 0%, transparent 70%)",
+                        animation: `${float} 8s ease-in-out infinite`,
+                        animationDelay: "2s",
+                    },
+                }}
             >
-              Khám phá các quỹ
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: 'white',
-                color: 'white',
-                px: 4,
-                py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                textTransform: 'none',
-                borderWidth: 2,
-                '&:hover': {
-                  borderColor: 'white',
-                  bgcolor: 'rgba(255,255,255,0.1)',
-                  borderWidth: 2,
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease'
-              }}
-              onClick={() => router.push('/fundraiser/apply')}
+                <Container
+                    maxWidth="lg"
+                    sx={{ position: "relative", zIndex: 1 }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            mb: 3,
+                        }}
+                    >
+                        <Chip
+                            icon={
+                                <SecurityIcon
+                                    sx={{ color: "white !important" }}
+                                />
+                            }
+                            label="Được bảo mật bởi Blockchain"
+                            sx={{
+                                bgcolor: "rgba(255, 255, 255, 0.2)",
+                                backdropFilter: "blur(10px)",
+                                color: "white",
+                                fontWeight: 600,
+                                px: 2,
+                                py: 2.5,
+                                fontSize: "0.95rem",
+                                border: "1px solid rgba(255, 255, 255, 0.3)",
+                            }}
+                        />
+                    </Box>
+
+                    <Typography
+                        variant="h1"
+                        component="h1"
+                        textAlign="center"
+                        sx={{
+                            fontWeight: 900,
+                            mb: 3,
+                            fontSize: {
+                                xs: "2.5rem",
+                                sm: "3.5rem",
+                                md: "4.5rem",
+                            },
+                            lineHeight: 1.2,
+                            textShadow: "0 4px 20px rgba(0,0,0,0.2)",
+                            background:
+                                "linear-gradient(to right, #ffffff, #ccfbf1)",
+                            backgroundClip: "text",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}
+                    >
+                        Từ thiện minh bạch
+                        <br />
+                        với Web3
+                    </Typography>
+
+                    <Typography
+                        variant="h5"
+                        textAlign="center"
+                        sx={{
+                            mb: 2,
+                            opacity: 0.95,
+                            fontWeight: 400,
+                            fontSize: { xs: "1.1rem", md: "1.4rem" },
+                            maxWidth: "800px",
+                            mx: "auto",
+                            lineHeight: 1.6,
+                        }}
+                    >
+                        Theo dõi từng đồng đóng góp của bạn trên blockchain
+                    </Typography>
+
+                    <Typography
+                        variant="body1"
+                        textAlign="center"
+                        sx={{
+                            mb: 6,
+                            maxWidth: "650px",
+                            mx: "auto",
+                            opacity: 0.85,
+                            fontSize: { xs: "1rem", md: "1.15rem" },
+                            lineHeight: 1.8,
+                        }}
+                    >
+                        Không cần ví điện tử phức tạp, không cần kiến thức
+                        blockchain - chỉ cần kết nối và bắt đầu hành trình từ
+                        thiện an toàn, minh bạch
+                    </Typography>
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: 3,
+                            justifyContent: "center",
+                            flexWrap: "wrap",
+                            mb: 8,
+                        }}
+                    >
+                        <Button
+                            variant="contained"
+                            size="large"
+                            startIcon={<SearchIcon />}
+                            sx={{
+                                bgcolor: "white",
+                                color: "#0d9488",
+                                px: 5,
+                                py: 2,
+                                fontSize: "1.15rem",
+                                fontWeight: 700,
+                                textTransform: "none",
+                                borderRadius: "50px",
+                                boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
+                                "&:hover": {
+                                    bgcolor: "#f0fdfa",
+                                    transform: "translateY(-4px)",
+                                    boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
+                                },
+                                transition:
+                                    "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                            }}
+                            onClick={() => router.push("/campaigns")}
+                        >
+                            Khám phá các quỹ
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            size="large"
+                            startIcon={<TrendingUpIcon />}
+                            sx={{
+                                borderColor: "white",
+                                color: "white",
+                                px: 5,
+                                py: 2,
+                                fontSize: "1.15rem",
+                                fontWeight: 700,
+                                textTransform: "none",
+                                borderRadius: "50px",
+                                borderWidth: 2,
+                                backdropFilter: "blur(10px)",
+                                bgcolor: "rgba(255, 255, 255, 0.1)",
+                                "&:hover": {
+                                    borderColor: "white",
+                                    bgcolor: "rgba(255,255,255,0.2)",
+                                    borderWidth: 2,
+                                    transform: "translateY(-4px)",
+                                },
+                                transition:
+                                    "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                            }}
+                            onClick={() => router.push("/fundraiser/apply")}
+                        >
+                            Tạo chiến dịch gây quỹ
+                        </Button>
+                    </Box>
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            gap: 4,
+                            flexWrap: "wrap",
+                            opacity: 0.9,
+                        }}
+                    >
+                        {trustIndicators.map((item, index) => (
+                            <Box
+                                key={index}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                    color: "rgba(255, 255, 255, 0.95)",
+                                }}
+                            >
+                                {item.icon}
+                                <Typography sx={{ fontWeight: 500 }}>
+                                    {item.text}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Box>
+                </Container>
+            </Box>
+
+            <Box sx={{ bgcolor: "#ffffff", py: { xs: 8, md: 12 } }}>
+                <Container maxWidth="lg">
+                    <Box sx={{ textAlign: "center", mb: 8 }}>
+                        <Typography
+                            variant="overline"
+                            sx={{
+                                color: "#02A9B6",
+                                fontWeight: 700,
+                                fontSize: "1rem",
+                                letterSpacing: 2,
+                            }}
+                        >
+                            TẠI SAO CHỌN TRANSGIVE
+                        </Typography>
+                        <Typography
+                            variant="h2"
+                            component="h2"
+                            sx={{
+                                fontWeight: 800,
+                                mb: 2,
+                                fontSize: { xs: "2rem", md: "3rem" },
+                                color: "#134e4a",
+                                mt: 1,
+                            }}
+                        >
+                            Công nghệ Web3, trải nghiệm Web2
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                color: "text.secondary",
+                                maxWidth: "700px",
+                                mx: "auto",
+                                fontSize: "1.1rem",
+                                lineHeight: 1.8,
+                            }}
+                        >
+                            Kết hợp sức mạnh của blockchain với giao diện thân
+                            thiện để mang đến nền tảng từ thiện an toàn, minh
+                            bạch và dễ sử dụng nhất
+                        </Typography>
+                    </Box>
+
+                    <Box
+                        sx={{
+                            display: "grid",
+                            gridTemplateColumns: {
+                                xs: "1fr",
+                                md: "repeat(3, 1fr)",
+                            },
+                            gap: 4,
+                        }}
+                    >
+                        {features.map((feature, index) => (
+                            <Card
+                                key={index}
+                                sx={{
+                                    height: "100%",
+                                    background: "rgba(255, 255, 255, 0.9)",
+                                    backdropFilter: "blur(10px)",
+                                    border: "1px solid rgba(13, 148, 136, 0.1)",
+                                    borderRadius: 4,
+                                    boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+                                    transition:
+                                        "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                                    position: "relative",
+                                    overflow: "hidden",
+                                    "&:hover": {
+                                        boxShadow:
+                                            "0 20px 60px rgba(13, 148, 136, 0.2)",
+                                        transform: "translateY(-12px)",
+                                        border: `1px solid ${feature.color}`,
+                                        "& .icon-box": {
+                                            transform:
+                                                "scale(1.1) rotate(5deg)",
+                                        },
+                                        "&::before": {
+                                            transform: "translateX(0)",
+                                        },
+                                    },
+                                    "&::before": {
+                                        content: '""',
+                                        position: "absolute",
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        height: "4px",
+                                        background: feature.gradient,
+                                        transform: "translateX(-100%)",
+                                        transition: "transform 0.4s ease",
+                                    },
+                                }}
+                            >
+                                <CardContent sx={{ p: 4, textAlign: "center" }}>
+                                    <Box
+                                        className="icon-box"
+                                        sx={{
+                                            width: 100,
+                                            height: 100,
+                                            borderRadius: "24px",
+                                            background: feature.gradient,
+                                            color: "white",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            mx: "auto",
+                                            mb: 3,
+                                            boxShadow: `0 10px 40px ${feature.color}40`,
+                                            transition: "all 0.4s ease",
+                                        }}
+                                    >
+                                        {feature.icon}
+                                    </Box>
+                                    <Typography
+                                        variant="h5"
+                                        component="h3"
+                                        sx={{
+                                            fontWeight: 700,
+                                            mb: 2,
+                                            color: "#134e4a",
+                                            fontSize: "1.5rem",
+                                        }}
+                                    >
+                                        {feature.title}
+                                    </Typography>
+                                    <Typography
+                                        variant="body1"
+                                        sx={{
+                                            color: "text.secondary",
+                                            lineHeight: 1.8,
+                                            fontSize: "1rem",
+                                        }}
+                                    >
+                                        {feature.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </Box>
+                </Container>
+            </Box>
+
+            <Box
+                sx={{
+                    background:
+                        "linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%)",
+                    py: { xs: 8, md: 12 },
+                    position: "relative",
+                }}
             >
-              Gây quỹ
-            </Button>
-          </Box>
-        </Container>
-      </Box>
+                <Container maxWidth="lg">
+                    <Box sx={{ textAlign: "center", mb: 10 }}>
+                        <Typography
+                            variant="overline"
+                            sx={{
+                                color: "#02A9B6",
+                                fontWeight: 700,
+                                fontSize: "1rem",
+                                letterSpacing: 2,
+                            }}
+                        >
+                            CÁCH THỨC HOẠT ĐỘNG
+                        </Typography>
+                        <Typography
+                            variant="h2"
+                            component="h2"
+                            sx={{
+                                fontWeight: 800,
+                                mb: 2,
+                                fontSize: { xs: "2rem", md: "3rem" },
+                                color: "#134e4a",
+                                mt: 1,
+                            }}
+                        >
+                            3 bước đơn giản
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                color: "text.secondary",
+                                maxWidth: "600px",
+                                mx: "auto",
+                                fontSize: "1.1rem",
+                                lineHeight: 1.8,
+                            }}
+                        >
+                            Bắt đầu hành trình từ thiện minh bạch chỉ trong vài
+                            phút
+                        </Typography>
+                    </Box>
 
-      {/* Core Values Section */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Typography
-          variant="h3"
-          component="h2"
-          textAlign="center"
-          sx={{
-            fontWeight: 700,
-            mb: 2,
-            color: '#0d9488'
-          }}
-        >
-          Tại sao chọn TransGive?
-        </Typography>
-        <Typography
-          variant="body1"
-          textAlign="center"
-          sx={{
-            mb: 6,
-            color: 'text.secondary',
-            maxWidth: '600px',
-            mx: 'auto'
-          }}
-        >
-          Kết hợp công nghệ Web3 và trải nghiệm Web2 để mang đến nền tảng từ thiện an toàn và dễ sử dụng nhất
-        </Typography>
+                    <Box
+                        sx={{
+                            display: "grid",
+                            gridTemplateColumns: {
+                                xs: "1fr",
+                                md: "repeat(3, 1fr)",
+                            },
+                            gap: 6,
+                        }}
+                    >
+                        {howItWorksSteps.map((step, index) => (
+                            <Box
+                                key={index}
+                                sx={{
+                                    position: "relative",
+                                    height: "100%",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        top: -20,
+                                        left: 20,
+                                        width: 60,
+                                        height: 60,
+                                        borderRadius: "50%",
+                                        background: `linear-gradient(135deg, ${step.color} 0%, ${step.color}dd 100%)`,
+                                        color: "white",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        fontSize: "1.5rem",
+                                        fontWeight: 900,
+                                        boxShadow: `0 8px 30px ${step.color}60`,
+                                        zIndex: 2,
+                                    }}
+                                >
+                                    {step.step}
+                                </Box>
 
-        <Box className="flex w-[100%] justify-between mb-8">
-          {[
-            {
-              title: 'Minh bạch tuyệt đối',
-              description: 'Mọi giao dịch đều được ghi nhận trên blockchain. Theo dõi từng đồng tiền từ lúc đóng góp đến khi quỹ sử dụng.',
-              icon: '🔍',
-              color: '#2dd4bf'
-            },
-            {
-              title: 'An toàn & Tin cậy',
-              description: 'Smart contract được kiểm định kỹ lưỡng. Chỉ những tổ chức uy tín mới được tạo quỹ trên nền tảng.',
-              icon: '🔒',
-              color: '#0d9488'
-            },
-            {
-              title: 'Dễ dàng sử dụng',
-              description: 'Không cần ví blockchain, không cần kiến thức kỹ thuật. Đăng nhập bằng email và bắt đầu đóng góp ngay.',
-              icon: '✨',
-              color: '#2dd4bf'
-            }
-          ].map((feature, index) => (
-            <Box sx={{ width: '32%' }} key={index}>
-              <Card
-                sx={{
-                  height: '100%',
-                  width: '100%',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    boxShadow: '0 8px 24px rgba(13, 148, 136, 0.15)',
-                    transform: 'translateY(-8px)',
-                  }
-                }}
-              >
-                <CardContent sx={{ p: 4, textAlign: 'center' }}>
-                  <Box
-                    sx={{
-                      fontSize: '3rem',
-                      mb: 2,
-                      display: 'inline-block',
-                      width: 100,
-                      height: 100,
-                      // display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      borderRadius: '50%',
-                      bgcolor: `${feature.color}15`,
-                    }}
-                  >
-                    <div className="p-3">{feature.icon}</div>
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    component="h3"
-                    sx={{
-                      fontWeight: 700,
-                      mb: 2,
-                      color: '#0d9488'
-                    }}
-                  >
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {feature.description}
-                  </Typography>
-                </CardContent>
-              </Card>
+                                <Card
+                                    sx={{
+                                        flex: 1,
+                                        pt: 6,
+                                        pb: 4,
+                                        px: 3,
+                                        borderRadius: 4,
+                                        border: "2px solid transparent",
+                                        background: "white",
+                                        boxShadow:
+                                            "0 4px 20px rgba(0,0,0,0.06)",
+                                        transition: "all 0.4s ease",
+                                        "&:hover": {
+                                            border: `2px solid ${step.color}`,
+                                            boxShadow: `0 12px 50px ${step.color}30`,
+                                            transform: "translateY(-8px)",
+                                            "& .step-icon": {
+                                                transform:
+                                                    "scale(1.2) rotate(10deg)",
+                                            },
+                                        },
+                                    }}
+                                >
+                                    <CardContent sx={{ textAlign: "center" }}>
+                                        <Box
+                                            className="step-icon"
+                                            sx={{
+                                                color: step.color,
+                                                mb: 3,
+                                                display: "inline-block",
+                                                transition: "all 0.4s ease",
+                                            }}
+                                        >
+                                            {step.icon}
+                                        </Box>
+                                        <Typography
+                                            variant="h5"
+                                            component="h3"
+                                            sx={{
+                                                fontWeight: 700,
+                                                mb: 2,
+                                                color: "#134e4a",
+                                            }}
+                                        >
+                                            {step.title}
+                                        </Typography>
+                                        <Typography
+                                            variant="body1"
+                                            sx={{
+                                                color: "text.secondary",
+                                                lineHeight: 1.8,
+                                            }}
+                                        >
+                                            {step.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Box>
+                        ))}
+                    </Box>
+                </Container>
             </Box>
-          ))}
-        </Box>
-      </Container>
 
-      {/* How It Works Section */}
-      <Box sx={{ bgcolor: 'gray2', py: 8, display: 'flex', justifyContent: 'center' }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            component="h2"
-            textAlign="center"
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              color: '#0d9488'
-            }}
-          >
-            Cách thức hoạt động
-          </Typography>
-          <Typography
-            variant="body1"
-            textAlign="center"
-            sx={{
-              mb: 6,
-              color: 'text.secondary',
-              maxWidth: '600px',
-              mx: 'auto'
-            }}
-          >
-            Chỉ với 3 bước đơn giản để bắt đầu hành trình từ thiện minh bạch
-          </Typography>
-
-          <Box sx={{ mt: 2, display: 'flex' }}>
-            {[
-              {
-                step: '1',
-                title: 'Đăng nhập dễ dàng',
-                description: 'Kết nối ví blockchain hoặc đăng nhập bằng email. Hệ thống tự động tạo ví ảo cho bạn.',
-              },
-              {
-                step: '2',
-                title: 'Chọn quỹ và đóng góp',
-                description: 'Duyệt qua các quỹ đã được xác minh, xem thông tin chi tiết và đóng góp an tâm.',
-              },
-              {
-                step: '3',
-                title: 'Theo dõi minh bạch',
-                description: 'Xem lịch sử giao dịch on-chain, theo dõi cách quỹ sử dụng đóng góp của bạn theo thời gian thực.',
-              }
-            ].map((step, index) => (
-              <Box key={index}>
-                <Box sx={{ textAlign: 'center' }}>
-                  <Box
-                    sx={{
-                      width: 80,
-                      height: 80,
-                      borderRadius: '50%',
-                      bgcolor: '#2dd4bf',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '2rem',
-                      fontWeight: 700,
-                      mx: 'auto',
-                      mb: 3,
-                      boxShadow: '0 4px 12px rgba(45, 212, 191, 0.3)',
-                    }}
-                  >
-                    {step.step}
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    component="h3"
-                    sx={{
-                      fontWeight: 700,
-                      mb: 2,
-                      color: '#0d9488'
-                    }}
-                  >
-                    {step.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {step.description}
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Stats Section */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'space-evenly' }}>
-          {[
-            { number: '100%', label: 'Minh bạch', sublabel: 'Mọi giao dịch on-chain' },
-            { number: 'Web3', label: 'Công nghệ', sublabel: 'Blockchain Ethereum' },
-            { number: 'Web2', label: 'Trải nghiệm', sublabel: 'Dễ dùng như email' },
-            { number: '24/7', label: 'Theo dõi', sublabel: 'Thời gian thực' }
-          ].map((stat, index) => (
-            <Box key={index}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 800,
-                  color: '#2dd4bf',
-                  mb: 1
-                }}
-              >
-                {stat.number}
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 600,
-                  color: '#0d9488',
-                  mb: 0.5
-                }}
-              >
-                {stat.label}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {stat.sublabel}
-              </Typography>
+            <Box sx={{ bgcolor: "#f0fdfa", py: { xs: 8, md: 12 } }}>
+                <Container maxWidth="lg">
+                    <Box
+                        sx={{
+                            display: "grid",
+                            gridTemplateColumns: {
+                                xs: "repeat(2, 1fr)",
+                                md: "repeat(4, 1fr)",
+                            },
+                            gap: 4,
+                        }}
+                    >
+                        {stats.map((stat, index) => (
+                            <Card
+                                key={index}
+                                sx={{
+                                    textAlign: "center",
+                                    p: 4,
+                                    borderRadius: 4,
+                                    background: "white",
+                                    border: "1px solid rgba(13, 148, 136, 0.1)",
+                                    boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+                                    transition: "all 0.4s ease",
+                                    position: "relative",
+                                    overflow: "hidden",
+                                    "&:hover": {
+                                        transform: "translateY(-10px)",
+                                        boxShadow: `0 20px 60px ${stat.color}30`,
+                                        "&::before": {
+                                            transform: "scale(1)",
+                                            opacity: 0.1,
+                                        },
+                                    },
+                                    "&::before": {
+                                        content: '""',
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        width: "200%",
+                                        height: "200%",
+                                        background: stat.gradient,
+                                        transform:
+                                            "translate(-50%, -50%) scale(0)",
+                                        borderRadius: "50%",
+                                        opacity: 0,
+                                        transition: "all 0.6s ease",
+                                    },
+                                }}
+                            >
+                                <Box sx={{ position: "relative", zIndex: 1 }}>
+                                    <Typography
+                                        variant="h2"
+                                        sx={{
+                                            fontWeight: 900,
+                                            background: stat.gradient,
+                                            backgroundClip: "text",
+                                            WebkitBackgroundClip: "text",
+                                            WebkitTextFillColor: "transparent",
+                                            mb: 1,
+                                            fontSize: {
+                                                xs: "2.5rem",
+                                                md: "3rem",
+                                            },
+                                        }}
+                                    >
+                                        {stat.number}
+                                    </Typography>
+                                    <Typography
+                                        variant="h6"
+                                        sx={{
+                                            fontWeight: 700,
+                                            color: "#134e4a",
+                                            mb: 0.5,
+                                        }}
+                                    >
+                                        {stat.label}
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            color: "text.secondary",
+                                            fontSize: "0.95rem",
+                                        }}
+                                    >
+                                        {stat.sublabel}
+                                    </Typography>
+                                </Box>
+                            </Card>
+                        ))}
+                    </Box>
+                </Container>
             </Box>
-          ))}
-        </Box>
-      </Container>
 
-      {/* CTA Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%)',
-          color: 'white',
-          py: 8,
-          textAlign: 'center',
-        }}
-      >
-        <Container maxWidth="md">
-          <Typography
-            variant="h3"
-            component="h2"
-            sx={{
-              fontWeight: 700,
-              mb: 2
-            }}
-          >
-            Bắt đầu hành trình từ thiện minh bạch
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              mb: 4,
-              opacity: 0.95
-            }}
-          >
-            Tham gia cùng hàng nghìn người đang làm từ thiện một cách minh bạch và an toàn
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              bgcolor: 'white',
-              color: '#0d9488',
-              px: 5,
-              py: 2,
-              fontSize: '1.2rem',
-              fontWeight: 700,
-              textTransform: 'none',
-              boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-              '&:hover': {
-                bgcolor: '#f0fdfa',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
-              },
-              transition: 'all 0.3s ease'
-            }}
-            onClick={() => router.push('/campaigns')}
-          >
-            Bắt đầu ngay
-          </Button>
-        </Container>
-      </Box>
-    </>
-  );
+            <Box
+                sx={{
+                    position: "relative",
+                    background:
+                        "linear-gradient(165deg, #0d9488 0%, #2dd4bf 50%, #5eead4 100%)",
+                    py: { xs: 10, md: 14 },
+                    overflow: "hidden",
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background:
+                            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                        opacity: 0.6,
+                    },
+                }}
+            >
+                <Container
+                    maxWidth="md"
+                    sx={{
+                        position: "relative",
+                        zIndex: 1,
+                        textAlign: "center",
+                    }}
+                >
+                    <Typography
+                        variant="h2"
+                        component="h2"
+                        sx={{
+                            fontWeight: 900,
+                            mb: 3,
+                            color: "white",
+                            fontSize: { xs: "2rem", md: "3.5rem" },
+                            textShadow: "0 4px 20px rgba(0,0,0,0.2)",
+                        }}
+                    >
+                        Bắt đầu hành trình từ thiện minh bạch
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            mb: 5,
+                            opacity: 0.95,
+                            color: "white",
+                            fontSize: { xs: "1.1rem", md: "1.3rem" },
+                            lineHeight: 1.8,
+                            maxWidth: "600px",
+                            mx: "auto",
+                        }}
+                    >
+                        Tham gia cùng hàng nghìn người đang làm từ thiện một
+                        cách minh bạch, an toàn và có trách nhiệm
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        startIcon={<TrendingUpIcon />}
+                        sx={{
+                            bgcolor: "white",
+                            color: "#0d9488",
+                            px: 6,
+                            py: 2.5,
+                            fontSize: "1.25rem",
+                            fontWeight: 800,
+                            textTransform: "none",
+                            borderRadius: "50px",
+                            boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+                            "&:hover": {
+                                bgcolor: "#f0fdfa",
+                                transform: "translateY(-6px) scale(1.05)",
+                                boxShadow: "0 15px 50px rgba(0,0,0,0.4)",
+                            },
+                            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                        }}
+                        onClick={() => router.push("/campaigns")}
+                    >
+                        Bắt đầu ngay hôm nay
+                    </Button>
+                </Container>
+            </Box>
+        </>
+    );
 }
